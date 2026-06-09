@@ -31,7 +31,8 @@ import {
   Stethoscope,
   Scissors,
   Wand2,
-  Trash2
+  Trash2,
+  Menu
 } from 'lucide-react';
 import {
   AreaChart,
@@ -57,6 +58,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [passcode, setPasscode] = useState<string>('');
   const [loginError, setLoginError] = useState<string | null>(null);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState<boolean>(false);
 
   // Active Tab
   const [activeTab, setActiveTab] = useState<'dashboard' | 'appointments' | 'walkin' | 'settings'>('dashboard');
@@ -449,8 +451,16 @@ export default function App() {
   return (
     <div id="admin-panel-overlay" className="fixed inset-0 z-50 flex bg-slate-950 font-sans text-slate-100 overflow-hidden animate-[fadeIn_0.4s_ease-out]">
       
+      {/* MOBILE SIDEBAR OVERLAY */}
+      {isMobileSidebarOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
+          onClick={() => setIsMobileSidebarOpen(false)}
+        />
+      )}
+
       {/* SIDEBAR NAVIGATION */}
-      <aside className="w-72 bg-[#061324] border-r border-teal/15 flex flex-col justify-between flex-shrink-0">
+      <aside className={`fixed md:relative z-50 w-72 h-full bg-[#061324] border-r border-teal/15 flex flex-col justify-between flex-shrink-0 transition-transform duration-300 ease-in-out ${isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div>
           {/* Logo Brand Header */}
           <div className="p-6 border-b border-white/5 flex items-center gap-3">
@@ -480,7 +490,7 @@ export default function App() {
           {isLoggedIn && (
             <nav className="p-4 flex flex-col gap-1.5">
               <button
-                onClick={() => setActiveTab('dashboard')}
+                onClick={() => { setActiveTab('dashboard'); setIsMobileSidebarOpen(false); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === 'dashboard'
                     ? 'bg-teal text-navy font-bold shadow-md shadow-teal/15'
@@ -492,7 +502,7 @@ export default function App() {
               </button>
 
               <button
-                onClick={() => setActiveTab('appointments')}
+                onClick={() => { setActiveTab('appointments'); setIsMobileSidebarOpen(false); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all relative ${
                   activeTab === 'appointments'
                     ? 'bg-teal text-navy font-bold shadow-md shadow-teal/15'
@@ -509,7 +519,7 @@ export default function App() {
               </button>
 
               <button
-                onClick={() => setActiveTab('walkin')}
+                onClick={() => { setActiveTab('walkin'); setIsMobileSidebarOpen(false); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === 'walkin'
                     ? 'bg-teal text-navy font-bold shadow-md shadow-teal/15'
@@ -521,7 +531,7 @@ export default function App() {
               </button>
 
               <button
-                onClick={() => setActiveTab('settings')}
+                onClick={() => { setActiveTab('settings'); setIsMobileSidebarOpen(false); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === 'settings'
                     ? 'bg-teal text-navy font-bold shadow-md shadow-teal/15'
@@ -575,12 +585,19 @@ export default function App() {
       <main className="flex-1 bg-[#091524] overflow-y-auto flex flex-col">
         
         {/* TOP STATUS HEADER BAR */}
-        <header className="h-20 bg-[#061324] border-b border-teal/15 px-8 flex items-center justify-between flex-shrink-0">
+        <header className="h-20 bg-[#061324] border-b border-teal/15 px-4 md:px-8 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">
-            <span className="bg-teal/10 text-teal py-1 px-3 border border-teal/20 text-[10px] font-mono rounded font-bold uppercase tracking-widest">
+            <button 
+              onClick={() => setIsMobileSidebarOpen(true)}
+              className="md:hidden text-slate-300 hover:text-white focus:outline-none p-2 bg-white/5 rounded-lg border border-white/10"
+            >
+              <Menu size={20} />
+            </button>
+            <span className="hidden sm:inline-block bg-teal/10 text-teal py-1 px-3 border border-teal/20 text-[10px] font-mono rounded font-bold uppercase tracking-widest">
               Secured Clinical Hub
             </span>
-            <h2 className="text-sm font-semibold text-slate-300">SmileCare Private Administration Workspace</h2>
+            <h2 className="text-sm font-semibold text-slate-300 hidden sm:block">SmileCare Private Administration Workspace</h2>
+            <h2 className="text-sm font-semibold text-slate-300 sm:hidden">SmileCare Admin</h2>
           </div>
 
           <div className="flex items-center gap-4">
