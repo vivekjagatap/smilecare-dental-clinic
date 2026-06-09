@@ -119,8 +119,8 @@
     <!-- DEV CONTROL / API CONFIGURATION BAR -->
     <div id="config-drawer" class="bg-navy-dark border-b border-teal/20 text-white py-3 px-4 transition-all duration-300">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <div class="bg-teal/10 p-2 rounded-full border border-teal/30 text-teal">
+        <div class="flex items-center gap-3 text-center md:text-left">
+          <div class="bg-teal/10 p-2 rounded-full border border-teal/30 text-teal shrink-0 mx-auto md:mx-0">
             <i class="fa-solid fa-key text-xs"></i>
           </div>
           <div>
@@ -191,7 +191,7 @@
       </div>
 
       <!-- Mobile Dropdown Menu -->
-      <div id="mobile-menu" class="hidden absolute top-16 md:top-20 left-0 right-0 bg-navy/98 backdrop-blur-xl border-b border-teal/10 py-6 px-6 shadow-2xl flex flex-col gap-4">
+      <div id="mobile-menu" class="hidden absolute top-16 md:top-20 left-0 right-0 bg-navy border-b border-teal/10 py-6 px-6 shadow-2xl flex flex-col gap-4 z-50">
         <a href="#home" onclick="closeMobileMenu()" class="text-slate-300 hover:text-teal hover:pl-2 transition-all font-medium py-1.5"><i class="fa-solid fa-circle-chevron-right text-teal text-xs mr-2"></i>Home</a>
         <a href="#services" onclick="closeMobileMenu()" class="text-slate-300 hover:text-teal hover:pl-2 transition-all font-medium py-1.5"><i class="fa-solid fa-circle-chevron-right text-teal text-xs mr-2"></i>Services</a>
         <a href="#why-choose-us" onclick="closeMobileMenu()" class="text-slate-300 hover:text-teal hover:pl-2 transition-all font-medium py-1.5"><i class="fa-solid fa-circle-chevron-right text-teal text-xs mr-2"></i>Why Choose Us</a>
@@ -215,8 +215,8 @@
       </div>
       
       <!-- Premium Focused Light Glows - Placed to optimize contrast under text -->
-      <div class="absolute top-1/4 right-[10%] w-[500px] h-[500px] bg-teal/10 rounded-full blur-[140px] pointer-events-none opacity-60"></div>
-      <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-teal/[0.02] rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/4 right-[10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-teal/10 rounded-full blur-[100px] md:blur-[140px] pointer-events-none opacity-60 max-w-[100vw] overflow-hidden"></div>
+      <div class="absolute -bottom-32 -left-32 w-64 md:w-96 h-64 md:h-96 bg-teal/[0.02] rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full animate-[fadeIn_0.6s_ease-out]">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -225,8 +225,8 @@
             <span class="bg-teal/10 text-teal hover:bg-teal/20 border border-teal/30 text-xs px-4 py-1.5 rounded-full font-semibold tracking-wider font-mono uppercase mb-6 inline-block backdrop-blur-sm transition-colors cursor-default">
               ★ Leading Dentist in Pune, Maharashtra
             </span>
-            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.12] mb-6 drop-shadow-md">
-              Transforming Smiles, <br><span class="text-gradient">Changing Lives.</span>
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.12] mb-6 drop-shadow-md break-words">
+              Transforming Smiles, <br class="hidden sm:block"><span class="text-gradient">Changing Lives.</span>
             </h1>
             <p class="text-slate-200 text-base md:text-lg max-w-xl mb-8 leading-relaxed drop-shadow-sm font-normal">
               Experience the pinnacle of luxury, pain-free dental care. Utilizing advanced 3D intraoral diagnostics and modern clinical tools, we ensure a gentle and secure transition to your ideal smile.
@@ -444,9 +444,9 @@
           </div>
 
           <!-- Input Block -->
-          <div class="relative mb-6">
-            <textarea id="symptom-input" rows="3" placeholder="Explain your dental symptoms (e.g. pain level, food cold sensitivity, bleeding gums)..." class="w-full bg-navy-dark/70 border border-white/10 hover:border-white/20 rounded-2xl p-4 pr-44 text-sm focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 text-white placeholder:text-slate-500 resize-none transition-all leading-relaxed"></textarea>
-            <button onclick="askAI()" class="absolute right-3.5 bottom-3.5 bg-gradient-to-r from-teal to-[#33D4C1] text-navy font-bold px-5 py-2.5 rounded-xl text-xs tracking-wider uppercase shadow-lg shadow-teal/15 hover:shadow-teal/25 hover:from-[#33D4C1] hover:to-teal transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">
+          <div class="relative mb-6 flex flex-col md:block">
+            <textarea id="symptom-input" rows="3" placeholder="Explain your dental symptoms (e.g. pain level, food cold sensitivity, bleeding gums)..." class="w-full bg-navy-dark/70 border border-white/10 hover:border-white/20 rounded-2xl p-4 md:pr-44 text-sm focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 text-white placeholder:text-slate-500 resize-none transition-all leading-relaxed"></textarea>
+            <button onclick="askAI()" class="mt-3 md:mt-0 relative md:absolute md:right-3.5 md:bottom-3.5 w-full md:w-auto bg-gradient-to-r from-teal to-[#33D4C1] text-navy font-bold px-5 py-2.5 rounded-xl text-xs tracking-wider uppercase shadow-lg shadow-teal/15 hover:shadow-teal/25 hover:from-[#33D4C1] hover:to-teal transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">
               Analyze Symptoms <i class="fa-solid fa-arrow-right ml-1"></i>
             </button>
           </div>
